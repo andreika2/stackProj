@@ -1,0 +1,15 @@
+<div *ngIf="questionAnswers?.length; else EmptyAnswerList">
+  <h2>{{ questionAnswers?.length }} Answers</h2>
+  <div *ngFor="let answers of questionAnswers">
+    <app-shared-html-content-panel
+      [innerHTMLContent]="answers.body || ''"
+    ></app-shared-html-content-panel>
+    <mat-divider></mat-divider>
+  </div>
+</div>
+
+<ng-template #EmptyAnswerList>
+  <app-shared-message-panel
+    [emptyMessageText]="emptyAnswerListText"
+  ></app-shared-message-panel>
+</ng-template>

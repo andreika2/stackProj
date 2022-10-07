@@ -1,0 +1,5 @@
+const DEFAULT_INNER_HTML_CONTENT = "";
+
+export {
+  DEFAULT_INNER_HTML_CONTENT
+};

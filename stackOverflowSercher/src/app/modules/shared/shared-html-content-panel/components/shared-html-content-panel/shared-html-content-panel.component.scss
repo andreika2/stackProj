@@ -1,0 +1,35 @@
+@mixin code-wrapper {
+  padding: 12px;
+  color: #2f3337;
+  width: auto;
+  max-height: 600px;
+  overflow: auto;
+  font-size: 13px;
+  line-height: 1.30769231;
+  background-color: #f6f6f6;
+  border-radius: 5px;
+}
+
+@mixin image-wrapper {
+  width: 100%;
+}
+
+.html-content {
+  ::ng-deep pre {
+    @include code-wrapper();
+  }
+  ::ng-deep img {
+    @include image-wrapper();
+  }
+}
+
+::ng-deep app-answers-list {
+  .html-content {
+    ::ng-deep pre {
+      @include code-wrapper();
+    }
+    ::ng-deep img {
+      @include image-wrapper();
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.app-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 20em 0 20em;
+  app-shared-search-panel {
+    top: 0;
+    position: sticky;
+    background: white;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .app-content-wrapper {
+    padding: unset;
+  }
+}

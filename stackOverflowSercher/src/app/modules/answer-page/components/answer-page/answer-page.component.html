@@ -1,0 +1,24 @@
+<div *ngIf="(answerPageService.questionPageData$ | async); else Loading">
+  <h1>{{ (answerPageService.questionPageData$ | async)?.questionData?.title }}</h1>
+
+  <h2>
+    {{ answerPageService.getAnswerPanelInfo(answerPageService.questionPageData$) | async | json }}
+  </h2>
+
+  <mat-divider></mat-divider>
+
+    <app-shared-html-content-panel
+      [innerHTMLContent]="(answerPageService.questionPageData$ | async)?.questionData?.body || ''"
+    ></app-shared-html-content-panel>
+
+  <mat-divider></mat-divider>
+
+  <app-answers-list
+    [questionAnswers]="(answerPageService.questionPageData$ | async)?.answerListData || []"
+  ></app-answers-list>
+
+</div>
+
+<ng-template #Loading>
+  <app-shared-progress-bar></app-shared-progress-bar>
+</ng-template>

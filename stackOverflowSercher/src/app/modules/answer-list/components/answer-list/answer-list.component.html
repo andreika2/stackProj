@@ -1,0 +1,22 @@
+<div *ngIf="(answerListService.answerListIsLoading | async) === null; else Loading">
+  <app-shared-grid-panel
+    [gridPanelData]="(answerListService.answerListItems | async) || []"
+    [gridDataDisplayColumns]="answerListService.answerDisplayColumns"
+    [emptyMessageText]="emptyMessageText"
+    [customCell]="CustomCell"
+  ></app-shared-grid-panel>
+
+  <ng-template #CustomCell
+               let-columnName="columnName"
+               let-elementData="elementData">
+    <app-shared-cell-grid-panel
+      [cellConfigOptions]="getCellConfigOptions(columnName, elementData)"
+      (cellEmitData)="onCellEmmitData($event)"
+    ></app-shared-cell-grid-panel>
+  </ng-template>
+</div>
+
+<ng-template #Loading>
+  <app-shared-progress-bar>
+  </app-shared-progress-bar>
+</ng-template>

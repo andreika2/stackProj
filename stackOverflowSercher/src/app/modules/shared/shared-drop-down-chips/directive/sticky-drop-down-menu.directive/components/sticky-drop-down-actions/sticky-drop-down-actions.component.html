@@ -1,0 +1,6 @@
+<p
+  *ngFor="let action of actionsPanelList"
+  (click)="action.actionFunction()"
+>
+  {{ action.actionName }}
+</p>

@@ -1,0 +1,8 @@
+$mat-card-header-size: 40px !default;
+.mat-card-avatar {
+  height: $mat-card-header-size;
+  width: $mat-card-header-size;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}

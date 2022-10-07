@@ -1,0 +1,7 @@
+<mat-chip-list>
+  <mat-chip *ngFor="let tags of configOptions?.cellData || []"
+            color="primary"
+            selected>
+    {{ tags }}
+  </mat-chip>
+</mat-chip-list>

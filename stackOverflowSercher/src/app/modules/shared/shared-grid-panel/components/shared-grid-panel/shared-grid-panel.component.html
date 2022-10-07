@@ -1,0 +1,30 @@
+<table *ngIf = "gridPanelData.length; else dataIsEmpty"
+      mat-table
+      [dataSource] = "gridPanelData">
+  <ng-container
+    *ngFor = "let column of gridDataDisplayColumns"
+    [matColumnDef] = column
+    >
+    <th mat-header-cell *matHeaderCellDef> {{ column | uppercase }}</th>
+    <td mat-cell
+        class="cell-data"
+        *matCellDef = "let element">
+      <div *ngIf="!customCell">{{ element[column] }} </div>
+      <div *ngIf="customCell">
+        <ng-container
+          [ngTemplateOutlet]="customCell"
+          [ngTemplateOutletContext]="{ elementData: element[column], columnName: column }"
+        ></ng-container>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef = "gridDataDisplayColumns"></tr>
+  <tr mat-row *matRowDef = "let row; columns: gridDataDisplayColumns;"></tr>
+</table>
+
+<ng-template #dataIsEmpty>
+  <app-shared-message-panel
+    [emptyMessageText]="emptyMessageText"
+  ></app-shared-message-panel>
+</ng-template>

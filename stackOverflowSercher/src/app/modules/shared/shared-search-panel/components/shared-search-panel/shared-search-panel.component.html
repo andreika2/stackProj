@@ -1,0 +1,20 @@
+<div
+  [formGroup]="searchPanelForm"
+  class="search-panel"
+>
+  <img src="../../../../../../assets/logo.png" alt="">
+  <mat-form-field appearance="outline">
+    <input
+      [formControlName]="searchControlName"
+      matInput
+    >
+  </mat-form-field>
+  <button
+    [disabled]="!searchPanelForm.valid"
+    (click)="sharedSearchPanelService.searchRequest(searchString, redirectUrl)"
+    mat-raised-button
+    color="primary">
+    Search
+    <mat-icon>search</mat-icon>
+  </button>
+</div>

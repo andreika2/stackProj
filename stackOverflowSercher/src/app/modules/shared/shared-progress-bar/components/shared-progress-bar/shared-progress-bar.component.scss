@@ -1,0 +1,17 @@
+.shared-progress-bar-panel {
+  display: flex;
+  padding: 0 5em 0 5em;
+  height: calc(100vh - 6em);
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  .loader-text {
+    font-weight: bold;
+    font-size: 1.4em;
+    color: gray;
+  }
+  mat-progress-bar {
+    height: 1em;
+  }
+}
