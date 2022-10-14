@@ -1,7 +1,7 @@
 import {ActionPanel, INodeStyles, NodeStyle} from "./sticky-drop-down-menu.directive.entity";
 import {IRenderElements} from "../base-structure.directive/base-structure.directive.entity";
 
-const DEFAULT_ACTION_PANEL_LIST: IRenderElements<INodeStyles> = [];
+const DEFAULT_ACTION_PANEL_LIST: ActionPanel = [];
 
 const SEARCH_TAG_NAME = "mat-option";
 
@@ -16,9 +16,11 @@ const ELEMENT_TAG_INDEX = 0;
 const PROJECTABLE_NODES: any[][] = [];
 
 const NODE_WRAPPER_STYLES: INodeStyles = {
-  [NodeStyle.Position]: "sticky",
+  [NodeStyle.Position]: "fixed",
   [NodeStyle.Bottom]: "0",
-  [NodeStyle.BackGroundColor]: "white"
+  [NodeStyle.BackGroundColor]: "lightblue",
+  ["border"]: "1px solid",
+  ["height"]: "3em"
 };
 
 export {

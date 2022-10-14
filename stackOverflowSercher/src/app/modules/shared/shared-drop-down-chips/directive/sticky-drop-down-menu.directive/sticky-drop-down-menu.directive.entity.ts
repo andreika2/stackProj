@@ -4,7 +4,7 @@ interface IActionPanel {
 }
 
 type INodeStyles = {
-  [styleName in NodeStyle]: string;
+  [styleName in NodeStyle | string]: string;
 };
 
 enum NodeStyle {

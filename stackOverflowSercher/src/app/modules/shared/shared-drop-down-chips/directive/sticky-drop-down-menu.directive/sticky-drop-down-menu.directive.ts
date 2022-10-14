@@ -1,30 +1,30 @@
 import {
-  AfterViewChecked, ApplicationRef, ComponentFactoryResolver, ComponentRef,
+  ApplicationRef, ComponentFactoryResolver, ComponentRef,
   Directive, Injector, Input, OnInit, Renderer2, TemplateRef, ViewContainerRef, ViewRef
 } from '@angular/core';
 
 import { StickyDropDownActionsComponent } from "./components/sticky-drop-down-actions/sticky-drop-down-actions.component";
 import {ActionPanel, INodeStyles, NodeStyle} from "./sticky-drop-down-menu.directive.entity";
 import {
-  ELEMENT_TAG_INDEX, INITIAL_TAG_NAME, NODE_WRAPPER_STYLES,
-  PROJECTABLE_NODES, SEARCH_TAG_NAME, STICKY_CONTAINER_INDEX, STICKY_PANEL_CLASS_NAME
+  INITIAL_TAG_NAME, NODE_WRAPPER_STYLES,
+  PROJECTABLE_NODES, STICKY_CONTAINER_INDEX, STICKY_PANEL_CLASS_NAME
 } from "./sticky-drop-down-menu.directive.config";
 import {BaseStructureDirective} from "../base-structure.directive/base-structure.directive";
-import {IRenderElements} from "../base-structure.directive/base-structure.directive.entity";
 
 @Directive({
   selector: '[appStickyDropDownMenu]'
 })
 export class StickyDropDownMenuDirective
   extends BaseStructureDirective<INodeStyles, StickyDropDownActionsComponent>
-  implements OnInit, AfterViewChecked {
+  implements OnInit {
 
-  @Input()
-  public set actionsPanelList(actionsPanelList: IRenderElements<INodeStyles> ) {
+  @Input("appStickyDropDownMenu")
+  public set actionsPanelList(actionsPanelList: ActionPanel ) {
     this.renderElements = actionsPanelList;
     this.clearStickyContainer();
-    this.ngAfterViewChecked();
   }
+
+  private position: any = {};
 
   constructor(
     private readonly injector: Injector,
@@ -39,11 +39,20 @@ export class StickyDropDownMenuDirective
 
   public ngOnInit(): void {
     this.viewContainerRef.createEmbeddedView(this.template);
+    window.addEventListener("contextmenu", evt => {
+      console.log(evt);
+      this.position = {
+        top: evt.clientX,
+        left: evt.clientY
+      }
+      this.clearStickyContainer();
+      this.createStickyContainer();
+    })
   }
 
-  public ngAfterViewChecked(): void {
-    this.createStickyContainer();
-  }
+  // public ngAfterViewChecked(): void {
+  //   this.createStickyContainer();
+  // }
 
   readonly clearStickyContainer = (): void => this.stickyPanelContainer[STICKY_CONTAINER_INDEX]?.remove();
 
@@ -56,7 +65,7 @@ export class StickyDropDownMenuDirective
   }
 
   private get elementContainer(): Element {
-    return this.templateParentNode.getElementsByTagName(SEARCH_TAG_NAME)[ELEMENT_TAG_INDEX];
+    return this.templateParentNode;
   }
 
   private get stickyPanelContainer(): HTMLCollectionOf<Element> {
@@ -94,7 +103,9 @@ export class StickyDropDownMenuDirective
     Object.keys(NODE_WRAPPER_STYLES).forEach(
       key => this.renderer.setStyle(initialNode, key, NODE_WRAPPER_STYLES[key as NodeStyle])
     );
+    Object.keys(this.position).forEach(
+      key => this.renderer.setStyle(initialNode, key, this.position[key])
+    )
   }
 
 }
-

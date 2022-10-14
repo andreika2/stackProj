@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {INodeStyles} from "../../sticky-drop-down-menu.directive.entity";
+import {ActionPanel, INodeStyles} from "../../sticky-drop-down-menu.directive.entity";
 import {DEFAULT_ACTION_PANEL_LIST} from "../../sticky-drop-down-menu.directive.config";
 import {IRenderElements} from "../../../base-structure.directive/base-structure.directive.entity";
 
@@ -9,5 +9,5 @@ import {IRenderElements} from "../../../base-structure.directive/base-structure.
   styleUrls: ['./sticky-drop-down-actions.component.scss']
 })
 export class StickyDropDownActionsComponent {
-  @Input() public actionsPanelList: IRenderElements<INodeStyles> = DEFAULT_ACTION_PANEL_LIST;
+  @Input() public actionsPanelList: ActionPanel = DEFAULT_ACTION_PANEL_LIST;
 }

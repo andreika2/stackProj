@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import {
-  ActionPanel
-} from "../../modules/shared/shared-drop-down-chips/directive/sticky-drop-down-menu.directive/sticky-drop-down-menu.directive.entity";
 
 @Component({
   selector: 'app-root',
@@ -9,11 +6,11 @@ import {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  test: ActionPanel = [
+  test: any = [
     {
-      actionName: "Test",
+      actionName: "Copy+Paste",
       actionFunction: () => {
-        alert("test")
+        alert("Copy+Paste")
       }
     }
   ]
